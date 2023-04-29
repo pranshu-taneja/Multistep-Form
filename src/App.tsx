@@ -61,68 +61,74 @@ function App() {
 
   
   return (
-    <div
-      style={{
-        position: "relative",
-        fontFamily: "arial",
-        background: "white",
-        height: "40rem",
-        width: "35rem",
-        borderRadius: "1rem",
-        margin: "1rem",
-        padding: "1rem",
-      }}
-    >
-      <form onSubmit={onSubmit}>
-        <div
-          style={{
-            position: "absolute",
-            top: "1rem",
-            right: "1rem",
-            fontFamily: "arial",
-            fontSize: "1.5rem",
-          }}
-        >
-          {currentStepIndex}/{NofSteps - 1}
-        </div>
+    <div className="container" 
+    style={{
+      display: "flex",
+      width: "100vw",
+      height: "100vh",
+      justifyContent: "center"
+    }}>
+      <div
+        style={{
+          position: "relative",
+          fontFamily: "arial",
+          background: "white",
+          height: "40rem",
+          width: "35rem",
+          borderRadius: "1rem",
+          margin: "1rem",
+          padding: "1rem",
 
-        {/* Starting of the content of form */}
-        {step}
-        {/* Starting of the content of form */}
-
-        {!isFirstStep && (
+        }}
+      >
+        <form onSubmit={onSubmit}>
+          <div
+            style={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+              fontFamily: "arial",
+              fontSize: "1.5rem",
+            }}
+          >
+            {currentStepIndex}/{NofSteps - 1}
+          </div>
+          {/* Starting of the content of form */}
+          {step}
+          {/* Starting of the content of form */}
+          {!isFirstStep && (
+            <button
+              type="button"
+              style={{
+                position: "absolute",
+                bottom: "1rem",
+                right: "10rem",
+                padding: "1rem",
+                fontFamily: "arial",
+                borderRadius: "1rem",
+                fontSize: "1.5rem",
+              }}
+              onClick={prev}
+            >
+              Back
+            </button>
+          )}
           <button
-            type="button"
+            type="submit"
             style={{
               position: "absolute",
               bottom: "1rem",
-              right: "10rem",
+              right: "1rem",
               padding: "1rem",
               fontFamily: "arial",
               borderRadius: "1rem",
               fontSize: "1.5rem",
             }}
-            onClick={prev}
           >
-            Back
+            {!isLastStep ? "Next" : "Submit"}
           </button>
-        )}
-
-        <button
-          type="submit"
-          style={{
-            position: "absolute",
-            bottom: "1rem",
-            right: "1rem",
-            padding: "1rem",
-            fontFamily: "arial",
-            borderRadius: "1rem",
-            fontSize: "1.5rem",
-          }}
-        >
-          {!isLastStep ? "Next" : "Submit"}
-        </button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
