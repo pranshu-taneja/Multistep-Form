@@ -1,10 +1,10 @@
 import useMultistepForm from "./useMultistepForm";
 import UserForm1 from "./UserForm";
 import UserForm2 from "./UserForm2";
+import { FormEvent, useState } from "react";
 import UserForm3 from "./UserForm3";
 import axios from "axios";
 
-import { FormEvent, useState } from "react";
 
 type FormData = {
   JobTitle: string;
