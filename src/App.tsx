@@ -2,41 +2,41 @@ import useMultistepForm from "./useMultistepForm";
 import UserForm1 from "./UserForm";
 import UserForm2 from "./UserForm2";
 import UserForm3 from "./UserForm3";
+import axios from "axios";
 
 import { FormEvent, useState } from "react";
 
 type FormData = {
-  Name:string,
-  Email:string,
-  age: string,
-  country: string,
-  Zip: string,
-  Phone:string,
-  RoomNo:string,
-  Gender: string,
-  Race: string
-}
+  JobTitle: string;
+  RemoteType: string;
+  Experience: string;
+  Location: string;
+  Salary: string;
+  Employees: string;
+  RoomNo: string;
+  Gender: string;
+  Race: string;
+};
 
-const Intial_Data:FormData = {
-  Name:"",
-  Email:"",
-  age: "",
-  country: "",
-  Zip: "",
-  Phone:"",
-  RoomNo:"",
+const Intial_Data: FormData = {
+  JobTitle: "",
+  RemoteType: "",
+  Experience: "",
+  Location: "",
+  Salary: "",
+  Employees: "",
+  RoomNo: "",
   Gender: "",
-  Race: ""
-}
+  Race: "",
+};
 
 function App() {
-
   const [data, setdata] = useState(Intial_Data);
 
-  function UpdateFields(fields: Partial<FormData>){
-    setdata(prev=>{
-      return{...prev, ...fields}
-    })
+  function UpdateFields(fields: Partial<FormData>) {
+    setdata((prev) => {
+      return { ...prev, ...fields };
+    });
   }
 
   const {
@@ -48,26 +48,42 @@ function App() {
     next,
     prev,
   } = useMultistepForm([
-    <UserForm1 {...data} UpdateFields={UpdateFields}/>,
-    <UserForm2 {...data} UpdateFields={UpdateFields}/>,
-    <UserForm3 {...data} UpdateFields={UpdateFields}/>,
+    <UserForm1 {...data} UpdateFields={UpdateFields} />,
+    <UserForm2 {...data} UpdateFields={UpdateFields} />,
+    <UserForm3 {...data} UpdateFields={UpdateFields} />,
   ]);
 
-  function onSubmit(e:FormEvent){
+  //------------------- Posting data using axios -------------------
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    if(!isLastStep) return next();
-    alert("Form Submitted!!")
+    if (!isLastStep) return next();
+    console.log(data)
+
+
+    try {
+      await axios.post(
+        "https://6446405fee791e1e29fa0001.mockapi.io/card-detail/",
+        data
+      );
+    } catch (err) {
+      console.log({ Error: "Some Error Occured" });
+      console.log(err);
+    }
+    //------------------- Posting data using axios -------------------
+
+    // alert("Form Submitted!!");
   }
 
-  
   return (
-    <div className="container" 
-    style={{
-      display: "flex",
-      width: "100vw",
-      height: "100vh",
-      justifyContent: "center"
-    }}>
+    <div
+      className="container"
+      style={{
+        display: "flex",
+        width: "100vw",
+        height: "100vh",
+        justifyContent: "center",
+      }}
+    >
       <div
         style={{
           position: "relative",
@@ -78,7 +94,6 @@ function App() {
           borderRadius: "1rem",
           margin: "1rem",
           padding: "1rem",
-
         }}
       >
         <form onSubmit={onSubmit}>

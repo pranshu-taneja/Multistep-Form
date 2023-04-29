@@ -1,19 +1,19 @@
 import FormWrapper from "./FormWrapper";
 
 type UserData = {
-  Name: string, 
-  Email: string, 
-  age: string
+  JobTitle: string, 
+  RemoteType: string, 
+  Experience: string
 }
 type UserFormProps = UserData & {
   UpdateFields: (fields: Partial<UserData>)=>void  
 }
 
-export default function UserForm({Name, Email, age, UpdateFields}:UserFormProps) {
+export default function UserForm({JobTitle, RemoteType, Experience, UpdateFields}:UserFormProps) {
   return (
     <div>
       <FormWrapper Title={"Step1"}>
-        <label>Name</label>
+        <label>JobTitle</label>
         <input
           style={{
             padding: "0.5rem",
@@ -22,10 +22,10 @@ export default function UserForm({Name, Email, age, UpdateFields}:UserFormProps)
             fontSize: "1rem",
           }}
           type="text"
-          value={Name}
-          onChange={e=>{UpdateFields({Name: e.target.value})}}
+          value={JobTitle}
+          onChange={e=>{UpdateFields({JobTitle: e.target.value})}}
         />
-        <label>Email</label>
+        <label>RemoteType</label>
         <input
           style={{
             padding: "0.5rem",
@@ -34,10 +34,10 @@ export default function UserForm({Name, Email, age, UpdateFields}:UserFormProps)
             fontSize: "1rem",
           }}
           type="text"
-          value={Email}
-          onChange={e=>{UpdateFields({Email: e.target.value})}}
+          value={RemoteType}
+          onChange={e=>{UpdateFields({RemoteType: e.target.value})}}
         />
-        <label>age</label>
+        <label>Experience</label>
         <input
           style={{
             padding: "0.5rem",
@@ -47,8 +47,8 @@ export default function UserForm({Name, Email, age, UpdateFields}:UserFormProps)
           }}
           required
           type="text"
-          value={age}
-          onChange={e=>{UpdateFields({age: e.target.value})}}
+          value={Experience}
+          onChange={e=>{UpdateFields({Experience: e.target.value})}}
         />
       </FormWrapper>
     </div>

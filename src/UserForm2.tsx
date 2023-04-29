@@ -2,16 +2,16 @@ import FormWrapper from "./FormWrapper";
 
 
 type UserData ={
-  country: string,
-  Zip: string,
-  Phone:string
+  Location: string,
+  Salary: string,
+  Employees:string
 }
 
 type UserFormProps = UserData & {
   UpdateFields: (fields: Partial<UserData>)=>void  
 }
 
-export default function UserForm2({country, Zip, Phone, UpdateFields}:UserFormProps) {
+export default function UserForm2({Location, Salary, Employees, UpdateFields}:UserFormProps) {
   return (
     <div>
       <FormWrapper Title={"Step2"}>
@@ -24,10 +24,10 @@ export default function UserForm2({country, Zip, Phone, UpdateFields}:UserFormPr
             fontSize: "1rem",
           }}
           type="text"
-          value={country}
-          onChange={e=>{UpdateFields({country: e.target.value})}}
+          value={Location}
+          onChange={e=>{UpdateFields({Location: e.target.value})}}
         />
-        <label>Zip</label>
+        <label>Salary</label>
         <input
           style={{
             padding: "0.5rem",
@@ -36,10 +36,10 @@ export default function UserForm2({country, Zip, Phone, UpdateFields}:UserFormPr
             fontSize: "1rem",
           }}
           type="text"
-          value={Zip}
-          onChange={e=>{UpdateFields({Zip: e.target.value})}}
+          value={Salary}
+          onChange={e=>{UpdateFields({Salary: e.target.value})}}
         />
-        <label>Phone</label>
+        <label>Employees</label>
         <input
           style={{
             padding: "0.5rem",
@@ -49,8 +49,8 @@ export default function UserForm2({country, Zip, Phone, UpdateFields}:UserFormPr
           }}
           required
           type="text"
-          value={Phone}
-          onChange={e=>{UpdateFields({Phone: e.target.value})}}
+          value={Employees}
+          onChange={e=>{UpdateFields({Employees: e.target.value})}}
         />
       </FormWrapper>
     </div>
